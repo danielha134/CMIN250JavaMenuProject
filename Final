@@ -1,0 +1,126 @@
+//import com.sun.beans.decoder.ElementHandler;
+import java.awt.MenuItem;
+import java.util.Scanner;
+
+//WARNING: do NOT change the name of the Main.java file or the name of the class Main
+
+//Read all the instructions in INSTRUCTIONS.MD located in the file tree to your right before you begin.
+
+//Student:Daniel Ha
+//Program:Extra Credit
+//Purpose: Write a program to take orders and calculate total payment.  Display on screen.  Provide options for 3 different food items and 3 different drink items.
+//Date:4/29/2022
+class Main {
+
+  // this is your boilerplate Class. do not change the name of the class.
+
+  // Method to display menu
+  public static void menu(String option) {
+    System.out.println(option);
+  }
+
+  public static void main(String[] args) {
+    // Create scanner object
+    Scanner input = new Scanner(System.in);
+
+    // Initializing global variables for menu and tax calculation
+    double foodOne = 8.12; // hamburger
+    double foodTwo = 6.34; // pasta
+    double foodThree = 4.56; // pizza slice
+    double drinkOne = 1.78; // soda
+    double drinkTwo = 2.91; // tea
+    double drinkThree = 3.12; // coffee
+    double salesTax = .0945;
+
+    double subTotal = 0;
+    int exitLoop = 0;
+    int quantity = 0;
+
+    // Display Menu to user. DELETE, replaced be method
+    /*
+     * System.out.println("#1: Hamburger $" + foodOne);
+     * System.out.println("#2: Pasta $" + foodTwo);
+     * System.out.println("#3: Pizza $" + foodThree);
+     * System.out.println("#4: Soda $" + drinkOne);
+     * System.out.println("#5: Tea $" + drinkTwo);
+     * System.out.println("#6: Coffee $" + drinkThree);
+     */
+
+    // method to tidy up menu
+    System.out.println("Welcome to our pop-up, here is our menu:");
+    menu("Hamburger $" + foodOne);
+    menu("Pasta $" + foodTwo);
+    menu("Pizza $" + foodThree);
+    menu("Soda $" + drinkOne);
+    menu("Tea $" + drinkTwo);
+    menu("Coffee $" + drinkThree);
+
+    // Prompt for customer to order
+    System.out.println("Would you like to place an order? 1 for Yes 0 for No");
+    int order = input.nextInt();
+
+    // Take input and implement switch to start adding totals
+    if (order == 1) {
+      do {
+        System.out.println("Please type one menu item as shown above.  When ready, type 'Checkout' to proceed.");
+        String menuItem = input.next();
+        menuItem = menuItem.toUpperCase();
+        switch (menuItem) {
+          case "HAMBURGER":
+            menu("Hamburger $" + foodOne);
+            System.out.println("How many? Type 0 for none.");
+            quantity = input.nextInt();
+            subTotal = subTotal + foodOne * quantity;
+            System.out.println("Current Subtotal is :$" + subTotal);
+            break;
+          case "PASTA":
+            menu("Pasta $" + foodTwo);
+            System.out.println("How many? Type 0 for none.");
+            quantity = input.nextInt();
+            subTotal = subTotal + foodTwo * quantity;
+            System.out.println("Current Subtotal is :$" + subTotal);
+            break;
+          case "PIZZA":
+            menu("Pizza $" + foodThree);
+            System.out.println("How many? Type 0 for none.");
+            quantity = input.nextInt();
+            subTotal = subTotal + foodThree * quantity;
+            System.out.println("Current Subtotal is :$" + subTotal);
+            break;
+          case "SODA":
+            menu("Soda $" + drinkOne);
+            System.out.println("How many? Type 0 for none.");
+            quantity = input.nextInt();
+            subTotal = subTotal + drinkOne * quantity;
+            System.out.println("Current Subtotal is :$" + subTotal);
+            break;
+          case "TEA":
+            menu("Tea $" + drinkTwo);
+            System.out.println("How many? Type 0 for none.");
+            quantity = input.nextInt();
+            subTotal = subTotal + drinkTwo * quantity;
+            System.out.println("Current Subtotal is :$" + subTotal);
+            break;
+          case "COFFEE":
+            menu("Coffee $" + drinkThree);
+            System.out.println("How many? Type 0 for none.");
+            quantity = input.nextInt();
+            subTotal = subTotal + drinkThree * quantity;
+            System.out.println("Current Subtotal is :$" + subTotal);
+            break;
+          case "CHECKOUT":
+            System.out.println("Your subtotal is: $" + subTotal);
+            System.out.println("Tax is: " + salesTax);
+            exitLoop = 1;
+        }
+      } while (exitLoop == 0);
+
+      // Calculate final total
+      subTotal = subTotal + (subTotal * salesTax);
+      System.out.print("Your total is: $");
+      System.out.printf("%.2f%n", subTotal);
+    } else {
+      System.out.println("Have a nice day!");
+    }
+  }
+}
